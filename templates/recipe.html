@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}{{ recipe_name }}{% endblock %}
+{% block header %}
+    <style>
+      .bold { font-weight: bold; }
+      .recipe > li { display: flex; align-items: center; margin: 0 0 1em 0; }
+      .recipe > li:hover { background-color: #003; }
+      .instructions { flex-basis: 50%; padding: 0.5em; border-right: 1px solid #aaa; }
+      .ingredients { flex-basis: 50%; }
+      .ingredients > ul { list-style: none; }
+      .hidden { display: none !important; }
+      #ingredients { background-color: #003; border: 1px solid #aaa; list-style-type: none; padding: 3em;
+		     display: table; position: absolute;}
+    </style>
+    <script src="https://unpkg.com/htmx.org@1.3.3"></script>
+    <script src="https://unpkg.com/hyperscript.org@0.0.9"></script>
+{% endblock %}
+{% block body %}
+<a href="{{url_for('edit_recipe', name=recipe_name)}}">Edit</a> <a href="{{url_for('recipes_home')}}">Back to recipes</a>
+
+<h1>{{ recipe_name }}</h1>
+<a href="#" _="on click toggle .hidden on #ingredients">Show shopping list</a>
+<ul id="ingredients" class="ingredients hidden">
+  {% for ingredient in ingredients %}
+    <li>{{ ingredient }}</li>
+  {% endfor %}
+</ul>
+<ul class="recipe">
+  {% for instructions, ingredients in paragraphs %}
+  <li>
+    <div class="instructions">
+      {{ instructions | safe }}
+    </div>
+    <div class="ingredients">
+      <ul>
+        {% for ingredient in ingredients %}
+        <li>{{ ingredient }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </li>
+  {% endfor %}
+  <p>{{ recipe_info | safe }}</p>
+</ul>
+{% endblock %}

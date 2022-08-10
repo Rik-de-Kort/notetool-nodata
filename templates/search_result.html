@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Search results{% endblock %}
+{% block body %}
+<h2>Search results for "{{ query }}"</h2>
+<div id="search-result">
+	<ul>
+		{% for ref_name, links in search_result.items() %}
+		<li class='no-bullet'>
+			<h3><a href="/notes/{{ ref_name }}/">{{ ref_name }}</a></h3><br>
+			<ul>
+				{%for link in links %}
+				<li>{{ link | safe }}</li>
+				{% endfor %}
+			</ul>
+
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+{% endblock %}

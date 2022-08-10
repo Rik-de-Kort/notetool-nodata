@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}{{ note["name"] }}{% endblock %}
+{% block body %}
+{% if 'recipes' in note["name"] %}
+<a href="/{{note['name']}}">View as recipe</a>
+{% endif %}
+{% include "editor.html" %}
+{% endblock %}

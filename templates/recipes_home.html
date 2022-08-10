@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock%}
+{% block body %}
+Beschikbare recepten:
+<ul>
+  {% for name in available %}
+  <li><a href="{{ url_for('recipe', name=name) }}">{{ name.title() }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Notetool - {% block title %}{% endblock %}</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+	{% block header %}{% endblock %}
+</head>
+<body>
+	<div class="sidenav">
+		<a href="/daily/">Daily notes</a>
+		<a href="/all/">All notes</a>
+		<a href="/recipes/">Recipes</a>
+		<input type="textbox" id="search" placeholder="Search">
+	</div>
+  <div class="center-container">
+    {% block body %}{% endblock %}
+  </div>
+  <script type="text/javascript">
+  document.getElementById('search').addEventListener('keydown', function(e) {
+      if (e.key == 'Enter') { window.location.replace(`/search/${this.value}`); } 
+  });
+  </script>
+</body>
+</html>
+

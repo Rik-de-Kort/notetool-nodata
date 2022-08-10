@@ -1,0 +1,86 @@
+@import 'dark-theme.css';
+
+.sidenav {
+	height: 100%; /* Full-height: remove this if you want "auto" height */
+	width: 200px; /* Set the width of the sidebar */
+	position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+	z-index: 1; /* Stay on top */
+	top: 0; /* Stay at the top */
+	left: 0;
+	overflow-x: hidden; /* Disable horizontal scroll */
+	padding-top: 20px;
+	background-color: #333
+}
+
+
+
+.sidenav a {
+	padding: 6px 8px 6px 16px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #818181;
+	display: block;
+}
+
+#search {
+	padding: 6px 0px 6px 6px;
+	margin: 6px 8px 6px 16px;
+	background-color: #444;
+	font-size:20px;
+	color: #000;
+	border: 1px solid black;
+	width: 70%;
+}
+
+#search::placeholder {
+	color: #000;
+}
+
+
+.center-container {
+  margin-left: 220px;
+  margin-right: 50px;
+  max-width: 70%;
+}
+
+.display-note {
+    min-height: 83px;
+}
+
+textarea {
+	background: inherit;
+	font: inherit;
+	color: inherit;
+	line-height: inherit;
+	width: 100%;
+	border: 1px black;
+}
+
+
+#backlinks, #search-result {
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	min-height:200px;
+	min-width:400px;
+	padding:20px;
+}
+
+
+#backlinks h3 {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #D8D8D8;
+	border-top: 1px solid #D8D8D8;
+}
+
+.highlight {
+  background-color: #ccc;
+  color: #333;
+  list-style-type: none;
+}
+
+.no-bullet {
+	list-style-type: none;
+}
+
+

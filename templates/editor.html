@@ -1,0 +1,42 @@
+<h2><a href="/notes/{{ note['name'] }}/">{{ note["name"] }}</a></h2>
+<div id="display-{{ note['name'] }}" class="display-note" tabindex="0"></div>
+<textarea id="edit-{{ note['name'] }}" class="edit-note" style="display: None;" oninput="this.style.height=''; this.style.height=this.scrollHeight+'px'" placeholder="Click here to begin writing" editable>{{ note["content"] }}</textarea>
+
+<div style="display:block;" id="suggest-{{ note['name'] }}"></div>
+{% if note["backlinks"] %}
+<h2>Backlinks</h2>
+<div id="backlinks">
+  <ul>
+    {% for ref_name, links in note["backlinks"].items() %}
+    <li class='no-bullet'>
+      <h3><a href="/notes/{{ ref_name }}/">{{ ref_name }}</a></h3><br>
+      <ul> {%for link in links %} <li>{{ link | safe }}</li>
+        {% endfor %}
+      </ul>
+
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+  
+<script type="text/javascript">
+  suggestions["{{ note['name'] }}"] = {items: [], selected: 0};
+
+  get_display_node("{{ note['name'] }}").addEventListener('click', () => startEditing("{{ note['name'] }}"));
+  get_display_node("{{ note['name'] }}").addEventListener('focus', () => startEditing("{{ note['name'] }}"));
+  get_edit_node("{{ note['name'] }}").addEventListener('blur', () => stopEditing("{{ note['name'] }}"));
+  get_edit_node("{{ note['name'] }}").addEventListener('keydown', async function(e) {
+    indent.bind(this)("{{ note['name'] }}", e);
+    suggest.bind(this)("{{ note['name'] }}", e);
+  });
+
+  document.addEventListener('keydown', (keyDownEvent) => {
+    if ((keyDownEvent.ctrlKey && (keyDownEvent.keyCode === 13)) || (keyDownEvent.keyCode === 27)) {
+      stopEditing("{{ note['name'] }}");
+    }
+  });
+
+  stopEditing("{{ note['name'] }}");
+</script>
